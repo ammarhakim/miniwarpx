@@ -1,0 +1,42 @@
+[RUN-DATA]
+
+description = Wave propagation
+run_name = wave_wv_10000
+
+meqn = 2
+mx = 10000
+mwave = 2
+mbc = 2
+nout = 2
+verbose = false
+algo = WAVE
+has_source = false
+
+xlower = 0.0
+xupper = 10.0
+
+tstart = 0.0
+tend = 10.0
+dt = 10.0
+
+cfl =  1.0
+cflm = 1.0001
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 0,0
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 0
+mmM = 0.0
+
+[APPLICATION-DATA]
+c0 = 1.0

@@ -1,0 +1,38 @@
+[RUN-DATA]
+
+description = Maxwell equation simulation
+run_name = launch_mc
+
+meqn = 6
+mx = 1000
+mwave = 3
+mbc = 2
+nout = 50
+verbose = false
+algo = MACCOR2
+has_source = false
+
+xlower = 0.0
+xupper = 10.0
+
+tstart = 0.0
+tend = 10.0
+dt = 10.0
+
+cfl =  1.0
+cflm = 1.0001
+
+bc_left  = bc_custom
+bc_right = bc_copy
+
+[WAVE]
+source_splitting = 0
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 2
+
+[APPLICATION-DATA]
+c0 = 1.0

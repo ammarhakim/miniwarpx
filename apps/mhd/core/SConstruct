@@ -1,0 +1,50 @@
+## -*- python -*-
+
+##
+# APPLICATION specific build data
+##
+
+# Include directories
+incs = []
+
+# Libraries to link to
+libs = []
+
+# Library paths
+libp = []
+
+# Source files for this APPLICATION
+sources = ['flux.cc',
+           'setprob.cc',
+           'rp.cc',
+           'maxs.cc',
+           'eigensystem.cc',
+           'rp_roe.cc',
+           'src.cc',
+           ]
+
+##
+# You should not need to modify anything below this line
+##
+
+# find $MINIWARPX environment variable
+import os.path
+MINIWARPX = os.path.expandvars('$MINIWARPX')
+
+# construct a new build environment
+env = Environment()
+
+# set WarpX INCLUDE directories
+warpx_incs = [MINIWARPX + '/src/etc',
+              MINIWARPX + '/src/lib']
+env.Append(CPPPATH = incs + warpx_incs)
+
+# read buildopts file to determine the build option
+ccflags = open(MINIWARPX + "/src/buildopts").read()
+env.Append(CCFLAGS = ccflags) # set options just read
+
+# build the sources
+objs = []
+for s in sources:
+    o = env.Object(s)
+    objs.append(o)

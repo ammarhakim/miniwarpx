@@ -1,0 +1,38 @@
+[RUN-DATA]
+
+description = Linear advection equation simulation
+run_name = advection_wv
+
+meqn = 1
+mx = 100
+mwave = 1
+mbc = 2
+nout = 1
+verbose = true
+algo = RKDG
+has_source = false
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 1.0
+dt = 10.0
+
+cfl =  0.1
+cflm = 0.11
+
+bc_left = bc_periodic
+bc_right = bc_periodic
+
+[WAVE]
+source_splitting = 0
+limiters = 3
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 2
+
+[APPLICATION-DATA]
+adv_speed = 1.0

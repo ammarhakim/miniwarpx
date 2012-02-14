@@ -1,0 +1,63 @@
+## -*- python -*-
+
+##
+# Scons file to build code in this directory
+##
+
+Import('env')
+
+# source files in lib
+sources = ['wxrange.cc',
+           'wxindexer.cc',
+           'wxsequencer.cc',
+           'utils.cc',
+           'gauleg.cc',
+           'out.cc',
+           'write_grid.cc',
+           'solve.cc',
+           'advance.cc',
+           'eval_fluctuations_qwave.cc',
+           'eval_fluctuations_fwave.cc',
+           'eval_fluctuations.cc',
+           'wave_initialize.cc',
+           'wave_step.cc',
+           'wave_setup.cc',
+           'wave_source_advance.cc',
+           'wave_limiter.cc',
+           'rkdg_initialize.cc',
+           'rkdg_step.cc',
+           'rkdg_setup.cc',
+           'rkdg_algo.cc',
+           'rkdg_eval_expansion.cc',
+           'rkdg_limiter.cc',
+           'rkdg_limiter_characteristics.cc',
+           'maccor2_setup.cc',
+           'maccor2_initialize.cc',
+           'maccor2_step.cc',
+           'maccor2_source_advance.cc',
+           'rp.cc',
+           'qinit.cc',
+           'flux.cc',
+           'src.cc',
+           'rp.cc',
+           'maxs.cc',
+           'bc.cc',
+           'read_inp.cc',
+           'driver.cc',
+           'setprob.cc',
+           'setkappa.cc',
+           'transform.cc',
+           'init_output.cc',
+           'before_step.cc',
+           'after_step.cc',
+           'main.cc',
+           ]
+
+# compile sources and add them to list of objects built
+objs = []
+for s in sources:
+    o = env.Object(s)
+    objs.append(o)
+
+# return objects files built to parent
+Return('objs')

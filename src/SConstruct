@@ -1,0 +1,56 @@
+## -*- python -*-
+
+# This top level SConstruct file sets up the environment and builds
+# the object files in the lib and etc sub-directories. It then
+# archives these objects into libwarpx.a library. All applications
+# should link to this library.
+
+import os
+
+# flags to build debug version
+deb_flags = ' -g -D_DO_RANGE_CHECK_'
+# flags to build optimized version
+opt_flags = ' -O2'
+
+##
+# Create a build environment
+##
+env = Environment()
+
+# set FLAGS to pass to compiler
+env.Append(CCFLAGS = ' -Wall ') # turn on all warnings
+
+# set INCLUDE directories relative to the top-level directory
+includes = ['#etc',
+            '#lib']
+env.Append(CPPPATH = includes)
+
+# test if we are building a debug version
+debug = ARGUMENTS.get('debug', 0)
+if int(debug):
+    # yes, we are debugging
+    env.Append(CCFLAGS = deb_flags)
+else:
+    # no, so turn on optimization
+    env.Append(CCFLAGS = opt_flags)
+
+# write out the flags used to buildopts file
+open("buildopts","w").writelines(env.subst('$CCFLAGS'))
+    
+
+# export the build environment down the build chain
+Export('env')
+
+# store the objects built by the src/lib and src/etc builds
+objs = []
+
+# build code in src/etc directory
+o = SConscript('etc/SConscript')
+objs.append(o) # append objects
+
+# build code in src/lib
+o = SConscript('lib/SConscript')
+objs.append(o) # append objects
+
+# archive everything into a static library and put it into src directory
+Library('warpx', objs)

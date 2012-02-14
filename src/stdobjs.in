@@ -1,0 +1,43 @@
+# Library objects which need to be included with all WarpX
+# applications
+
+LIBOBJS =	$(MINIWARPX)/src/lib/farray.o \
+		$(MINIWARPX)/src/lib/utils.o \
+		$(MINIWARPX)/src/lib/gauleg.o \
+		$(MINIWARPX)/src/lib/out.o \
+		$(MINIWARPX)/src/lib/write_grid.o \
+		$(MINIWARPX)/src/lib/solve.o \
+		$(MINIWARPX)/src/lib/advance.o \
+		$(MINIWARPX)/src/lib/wave_step.o \
+		$(MINIWARPX)/src/lib/rkdg_step.o \
+		$(MINIWARPX)/src/lib/main.o \
+		$(MINIWARPX)/src/lib/driver.o \
+		$(MINIWARPX)/src/lib/read_inp.o \
+		$(MINIWARPX)/src/lib/init_output.o \
+		$(MINIWARPX)/src/lib/eval_fluctuations.o \
+		$(MINIWARPX)/src/lib/eval_fluctuations_fwave.o \
+		$(MINIWARPX)/src/lib/eval_fluctuations_qwave.o \
+		$(MINIWARPX)/src/lib/wave_initialize.o \
+		$(MINIWARPX)/src/lib/rkdg_initialize.o \
+		$(MINIWARPX)/src/lib/rkdg_eval_expansion.o \
+		$(MINIWARPX)/src/lib/wave_setup.o \
+		$(MINIWARPX)/src/lib/wave_limiter.o \
+		$(MINIWARPX)/src/lib/rkdg_setup.o \
+		$(MINIWARPX)/src/lib/rkdg_algo.o \
+		$(MINIWARPX)/src/lib/rkdg_limiter.o \
+		$(MINIWARPX)/src/lib/before_step.o \
+		$(MINIWARPX)/src/etc/getline.o \
+		$(MINIWARPX)/src/etc/section.o \
+		$(MINIWARPX)/src/etc/inpparse.o \
+		$(MINIWARPX)/src/etc/extractors.o \
+		$(MINIWARPX)/src/etc/copy_file.o \
+
+$(TARGET): $(LIBOBJS) $(OBJS) $(HEADERS)
+	$(CXX)  $(FLAGS) $(LIBOBJS) $(OBJS) $(LINK_DIRS) $(LINK_FLAGS) -o $(TARGET)
+
+
+clean:
+	-rm -f *.o
+count:
+	wc -l *.cc *.h
+

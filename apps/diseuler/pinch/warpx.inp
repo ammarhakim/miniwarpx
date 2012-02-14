@@ -1,0 +1,44 @@
+[RUN-DATA]
+
+description = Euler equation simulation
+run_name = pinch_dg
+
+meqn = 5
+mx = 128
+mwave = 3
+mbc = 2
+nout = 5
+verbose = false
+algo = RKDG
+has_source = true
+
+xlower = 0.0
+xupper = 0.5
+
+tstart = 0.0
+tend = 100.0
+dt = 0.1
+
+cfl =  0.3
+cflm = 0.33
+
+bc_left  = bc_custom
+bc_right = bc_copy
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 1
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.4
+qbym = 50.0
+is_radial = 1

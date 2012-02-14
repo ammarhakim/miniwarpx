@@ -1,0 +1,23 @@
+## -*- python -*-
+
+##
+# Scons file to build code in this directory
+##
+
+Import('env')
+
+# source files in etc
+sources = ['getline.cc',
+           'section.cc',
+           'inpparse.cc',
+           'extractors.cc',
+           'copy_file.cc']
+
+# compile sources and add them to list of objects built
+objs = []
+for s in sources:
+    o = env.Object(s)
+    objs.append(o)
+
+# return objects files built to parent
+Return('objs')

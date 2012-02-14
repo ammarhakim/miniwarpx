@@ -1,0 +1,70 @@
+## -*- python -*-
+
+##
+# PROBLEM specific build data
+##
+
+# Include directories
+incs = ['../core',
+        ]
+
+# Libraries to link to
+libs = []
+
+# Library paths
+libp = []
+
+# Source files for this APPLICATION
+app_sources = ['flux.o',
+               'setprob.o',
+               'rp_euler.o',
+               'rp_maxwell.o',
+               'rp_twofluid.o',
+               'rkdg_twofluid_limiter.o',
+               'rkdg_euler_limiter.o',
+               'rkdg_maxwell_limiter.o',
+               'src.o',
+               'maxs.o',
+#               'rp_lax.o'
+               ]
+
+# Source files for this PROBLEM
+sources = ['qinit.cc',
+           ]
+
+# as app_sources reside in the core directory we need to append the
+# path to it
+app_sources = map(lambda x: '../core/'+x, app_sources)
+
+##
+# You should not need to modify anything below this line
+##
+
+# find $MINIWARPX environment variable
+import os.path
+MINIWARPX = os.path.expandvars('$MINIWARPX')
+
+# construct a new build environment
+env = Environment()
+
+# set INCLUDE directories
+warpx_incs = [MINIWARPX + '/src/etc',
+              MINIWARPX + '/src/lib']
+env.Append(CPPPATH = incs + warpx_incs)
+
+# read buildopts file to determine the build option
+ccflags = open(MINIWARPX + "/src/buildopts").read()
+env.Append(CCFLAGS = ccflags) # set options just read
+
+# build the sources
+objs = []
+for s in sources:
+    o = env.Object(s)
+    objs.append(o)
+
+# build the xminiwarpx executable
+env.Program(target = 'xminiwarpx',
+            source = objs + app_sources,
+            LIBS = libs + ['warpx'],
+            LIBPATH = libp + [MINIWARPX + '/src'],
+            )

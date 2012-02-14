@@ -1,0 +1,37 @@
+[RUN-DATA]
+
+description = Burger's equation simulation
+run_name = burgers_wv
+
+meqn = 1
+mx = 100
+mwave = 1
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = false
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 0.5
+dt = 10.0
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 2
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 2

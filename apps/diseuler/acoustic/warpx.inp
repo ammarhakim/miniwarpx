@@ -1,0 +1,43 @@
+[RUN-DATA]
+
+description = Euler equation simulation
+run_name = acoustic_wv
+
+meqn = 5
+mx = 400
+mwave = 3
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 10.0
+dt = 0.1
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 2
+dg_limiters = 2
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.4
+qbym = 100.0;

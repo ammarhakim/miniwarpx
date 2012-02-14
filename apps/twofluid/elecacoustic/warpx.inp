@@ -1,0 +1,48 @@
+[RUN-DATA]
+
+description = Two-Fluid version of Electron Acoustic problem
+run_name = acoustic_dg2
+
+meqn = 16
+mx = 512
+mwave = 9
+mbc = 2
+nout = 10
+verbose = false
+algo = RKDG
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 3.0
+dt = 0.1
+
+cfl =  0.19
+cflm = 0.2
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 3,3,3,3,3,3,3,3,3
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 3
+dg_limiters = 2
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 2
+c0 = 10.0
+qe = -10.0
+me = 1.0  # this gives qe/me = -10
+qi = 10.0
+mi = 1.0
+epsilon0 = 1.0

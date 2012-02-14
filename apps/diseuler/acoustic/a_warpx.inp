@@ -1,0 +1,44 @@
+[RUN-DATA]
+
+description = Euler equation simulation
+run_name = acoustics_dg
+
+meqn = 5
+mx = 320
+mwave = 1
+mbc = 2
+nout = 5
+verbose = false
+
+algo = RKDG
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 3.0
+dt = 0.1
+
+cfl =  0.8
+cflm = 0.81
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 0,0,0
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 1
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 2.0
+qbym = 10.0

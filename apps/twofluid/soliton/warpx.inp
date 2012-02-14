@@ -1,0 +1,48 @@
+[RUN-DATA]
+
+description = Two-Fluid version of Soliton problem
+run_name = soliton_wv
+
+meqn = 16
+mx = 500
+mwave = 9
+mbc = 2
+nout = 100
+verbose = false
+algo = WAVE
+has_source = true
+
+xlower = 0.0
+xupper = 12.0
+
+tstart = 0.0
+tend = 50.0
+dt = 0.1
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 3,3,3,3,3,3,3,3,3
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 2
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.666666666666666667
+c0 = 1.0
+qe = -1.0
+me = 0.02  # this gives qe/me = -50
+qi = 1.0
+mi = 1.0
+epsilon0 = 1.0

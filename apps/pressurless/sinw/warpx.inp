@@ -1,0 +1,39 @@
+[RUN-DATA]
+
+description = Pressureless fluid
+run_name = sinw
+
+meqn = 2
+mx = 500
+mwave = 2
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = false
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 2.0
+dt = 0.1
+
+cfl =  0.99
+cflm = 1.
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 1,1
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 3
+dg_limiters = 0
+mmM = 0.0

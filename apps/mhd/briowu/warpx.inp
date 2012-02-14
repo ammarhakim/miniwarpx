@@ -1,0 +1,42 @@
+[RUN-DATA]
+
+description = Brio-Wu shock tube problem
+run_name = bw_wv
+
+meqn = 8
+mx = 800
+mwave = 7
+mbc = 2
+nout = 5
+verbose = true
+algo = WAVE
+has_source = false
+
+xlower = -1.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 0.2
+dt = 1.0
+
+cfl =  0.4
+cflm = 0.5
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 4,4,4,4,4,4,4
+wv_order = 1
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 2
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.666667

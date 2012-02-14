@@ -1,0 +1,47 @@
+[RUN-DATA]
+
+description = Two-Fluid version of Sod shock problem
+run_name = hall_mac
+
+meqn = 13
+mx = 100
+mwave = 13
+mbc = 2
+nout = 100
+verbose = false
+algo = MACCOR2
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 0.0001
+dt = 0.1
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 3,3,3,3,3,3,3,3,3
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 3
+dg_limiters = 0
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.666666666666666667
+c0 = 1.0
+qe = -1.0
+me = 0    #0.000544602984424355  # this gives qe/me = 1836.2
+qi = 1.0
+mi = 1.0

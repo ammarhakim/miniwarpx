@@ -1,0 +1,41 @@
+[RUN-DATA]
+
+description = Euler equation simulation for shock entropy interaction
+run_name = se_dg
+
+meqn = 5
+mx = 200
+mwave = 3
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = false
+
+xlower = -1.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 0.47
+dt = 10.0
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = q_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 3
+dg_limiters = 1
+
+[APPLICATION-DATA]
+gas_gamma = 1.4

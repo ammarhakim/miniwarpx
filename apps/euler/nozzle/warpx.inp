@@ -1,0 +1,41 @@
+[RUN-DATA]
+
+description = Euler equation simulation
+run_name = euler_wv
+
+meqn = 5
+mx = 100
+mwave = 3
+mbc = 2
+nout = 10
+verbose = true
+algo = WAVE
+has_source = true
+has_kappa = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 100.0e-11
+dt = 10.0
+
+cfl =  0.9
+cflm = 1.0
+
+bc_left  = bc_custom
+bc_right = bc_custom
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 2
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 1
+sp_order = 1
+
+[APPLICATION-DATA]
+gas_gamma = 1.4

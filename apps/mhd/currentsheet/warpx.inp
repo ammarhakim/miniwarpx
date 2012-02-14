@@ -1,0 +1,42 @@
+[RUN-DATA]
+
+description = Harris current sheet equilibrium
+run_name = harris_wv
+
+meqn = 8
+mx = 128
+mwave = 1
+mbc = 2
+nout = 5
+verbose = true
+algo = MACCOR2
+has_source = false
+
+xlower = -20.0
+xupper = 20.0
+
+tstart = 0.0
+tend = 100.0
+dt = 0.001
+
+cfl =  0.5
+cflm = 0.51
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 1,1,1,1,1,1,1
+wv_order = 1
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 0
+mmM = 0.0
+
+[APPLICATION-DATA]
+gas_gamma = 1.666667

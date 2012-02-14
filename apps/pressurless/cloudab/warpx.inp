@@ -1,0 +1,39 @@
+[RUN-DATA]
+
+description = Pressureless fluid
+run_name = cloudab
+
+meqn = 2
+mx = 500
+mwave = 2
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = true
+
+xlower = -5.0
+xupper = 10.0
+
+tstart = -1.0
+tend = 3.5
+dt = 0.1
+
+cfl =  0.99
+cflm = 1.0
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 0
+limiters = 1,1
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 3
+dg_limiters = 0
+mmM = 0.0

@@ -1,0 +1,45 @@
+[RUN-DATA]
+
+description = Cold-electron Langmuir oscillations
+run_name = lang_wv
+
+meqn = 10
+mx = 100
+mwave = 5
+mbc = 2
+nout = 5
+verbose = false
+algo = WAVE
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 5.0
+dt = 0.1
+
+cfl =  0.99
+cflm = 1.0
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+edge_splitting = f_wave
+
+[WAVE]
+source_splitting = 1
+limiters = 1,1,3,3,3
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 2
+dg_limiters = 1
+mmM = 0.0
+
+[APPLICATION-DATA]
+c0 = 1.0
+q = -1.0
+m = 1.0
+epsilon0 = 1.0

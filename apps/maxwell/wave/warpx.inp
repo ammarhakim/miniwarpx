@@ -1,0 +1,40 @@
+[RUN-DATA]
+
+description = Maxwell equation simulation
+run_name = wave_dg
+
+meqn = 6
+mx = 100
+mwave = 3
+mbc = 2
+nout = 5
+verbose = false
+algo = RKDG
+has_source = false
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 20.0
+dt = 10.0
+
+cfl =  0.3
+cflm = 0.33
+
+bc_left  = bc_periodic
+bc_right = bc_periodic
+
+[WAVE]
+source_splitting = 0
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 3
+sp_order = 2
+dg_limiters = 2
+mmM = 0.0
+
+[APPLICATION-DATA]
+c0 = 1.0
