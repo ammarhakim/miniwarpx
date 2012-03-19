@@ -1,10 +1,10 @@
 [RUN-DATA]
 
 description = Linear advection equation simulation
-run_name = advection_wv
+run_name = advection_dg
 
 meqn = 1
-mx = 100
+mx = 128
 mwave = 1
 mbc = 2
 nout = 1
@@ -33,6 +33,7 @@ wv_order = 2
 [RKDG]
 rk_order = 2
 sp_order = 2
+dg_limiters = 1
 
 [APPLICATION-DATA]
 adv_speed = 1.0

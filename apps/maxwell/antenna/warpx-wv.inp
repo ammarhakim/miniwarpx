@@ -1,0 +1,39 @@
+[RUN-DATA]
+
+description = Maxwell equation simulation
+run_name = antenna-wv
+
+meqn = 6
+mx = 200
+mwave = 3
+mbc = 2
+nout = 2
+verbose = false
+algo = WAVE
+has_source = true
+
+xlower = 0.0
+xupper = 1.0
+
+tstart = 0.0
+tend = 20e-9
+dt = 1.e-9
+
+cfl =  0.1
+cflm = 0.11
+
+bc_left  = bc_copy
+bc_right = bc_copy
+
+[WAVE]
+source_splitting = 1
+limiters = 2,2,2
+wv_order = 2
+
+[RKDG]
+rk_order = 2
+sp_order = 4
+dg_limiters = 1
+
+[APPLICATION-DATA]
+c0 = 2.99792458e8

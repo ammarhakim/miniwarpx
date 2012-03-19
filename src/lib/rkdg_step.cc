@@ -224,7 +224,7 @@ rkdg_rk_order_2_tvd(Run_Data& rd, FArray<double>& q, double tcurr, double dt, do
     //
     // Runge-Kutta Step 2
     //
-    rkdg_rhs(rd,rws->q1,tcurr,rws->rhs); // compute RHS of equation
+    rkdg_rhs(rd,rws->q1,tcurr+dt,rws->rhs); // compute RHS of equation
     for(int i=1; i<=mx; i++)
         for(int m=1; m<=meqn; m++)
             for(int c=1; c<=ncoeffs; c++)
