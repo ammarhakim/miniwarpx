@@ -112,6 +112,7 @@ public:
        rather dangerous
     */
     T* data();
+    T const* data() const;
 
     /**
        general indexing routine. 'indices[k]', k=0.._r.rank()-1 is the
@@ -126,6 +127,11 @@ public:
 
     T index(int *indices) const;
     T& index(int *indices);
+
+    /**
+     * Linear index into array
+     */
+    int linloc(int *indices) const;
 
     /**
        indexers for ranks 1 to 4. In the following kp is the index
@@ -238,6 +244,11 @@ inline
 T*
 WxArray<T,WXINDEXER>::data() { return _data; }
 
+template<typename T, typename WXINDEXER>
+inline
+T const*
+WxArray<T,WXINDEXER>::data() const { return _data; }
+
 //
 // ctors
 //
@@ -281,7 +292,7 @@ WxArray<T,WXINDEXER>::WxArray(const WxRange& r, T* cdata)
 
 template<typename T, typename WXINDEXER>
 WxArray<T,WXINDEXER>::WxArray(unsigned rank, int *dims)
-        : _range(rank, dims), _count(new int(1)), 
+        : _range(rank, dims), _count(new unsigned(1)), 
           _indexer(_range), _traits(0)
 {
     SET_ALLOC(_traits);
@@ -510,6 +521,14 @@ T&
 WxArray<T,WXINDEXER>::index(int k1, int k2, int k3, int k4)
 {
     return _data[_indexer.index(k1,k2,k3,k4)]; 
+}
+
+template<typename T, typename WXINDEXER>
+inline
+int
+WxArray<T,WXINDEXER>::linloc(int *indices) const
+{
+    return _indexer.index(indices); 
 }
 
 template<typename T, typename WXINDEXER>

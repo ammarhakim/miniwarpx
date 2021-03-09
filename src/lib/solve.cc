@@ -92,6 +92,7 @@ solve(Run_Data& rd)
 
     // write initial conditions to file
     out(rd,"frame.q0",q);
+    out_dot_gkyl(rd,"frame_0.gkyl", q);
     std::cout << "MINIWARPX Frame " << 0 << " written to file" << std::endl;
 
     //**
@@ -112,6 +113,10 @@ solve(Run_Data& rd)
 
         // write solution to file
         out(rd,buff,q);
+
+        char buff2[100];
+        sprintf(buff2, "frame_%d.gkyl", frame);
+        out_dot_gkyl(rd,buff2,q);
 
         std::cout << "MINIWARPX Frame " << frame 
                   << " at time " << tcurr+tsize 

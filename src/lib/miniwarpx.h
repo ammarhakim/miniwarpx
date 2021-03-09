@@ -251,6 +251,9 @@ void write_grid(const Run_Data& rd, const FArray<double>& xp);
 void before_step(Run_Data& rd, FArray<double>& q, double t);
 void after_step(Run_Data& rd, FArray<double>& q, double t, double dt);
 
+// writes out to Postgkyl readable output file
+void out_dot_gkyl(const Run_Data& rd, char const *fname, const FArray<double>& q);
+
 //
 // prototypes for WAVE algorithm
 //
