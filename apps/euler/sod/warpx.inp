@@ -1,7 +1,7 @@
 [RUN-DATA]
 
 description = Euler equation simulation
-run_name = euler_dg
+run_name = euler_wv
 
 meqn = 5
 mx = 50
@@ -9,7 +9,7 @@ mwave = 3
 mbc = 2
 nout = 1
 verbose = true
-algo = RKDG
+algo = WAVE
 has_source = false
 
 xlower = 0.0
@@ -19,8 +19,8 @@ tstart = 0.0
 tend = 0.2
 dt = 10.0
 
-cfl =  0.1
-cflm = 0.11
+cfl =  0.9
+cflm = 0.95
 
 bc_left  = bc_copy
 bc_right = bc_copy

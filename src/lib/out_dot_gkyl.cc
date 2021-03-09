@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <vector>
 
 #include "miniwarpx.h"
 #include "farray.h"
@@ -50,13 +51,19 @@ out_dot_gkyl(const Run_Data& rd, char const *fname, const FArray<double>& q)
     fwrite(lower, sizeof(double), 1, fp);
     fwrite(upper, sizeof(double), 1, fp);
 
-    uint64_t esznc = sizeof(double)*rd.meqn, size = rd.mx; // what about DG?
+    uint64_t esznc = sizeof(double)*rd.meqn*rd.ncoeffs, size = rd.mx;
     fwrite(&esznc, sizeof(uint64_t), 1, fp);
     fwrite(&size, sizeof(uint64_t), 1, fp);
 
-    double const *data = q.data();
-    int idx[3] = {1, 1, 1}; int loc0 = q.linloc(idx);
+    std::vector<double> data(rd.mx*rd.meqn*rd.ncoeffs);
+    int count = 0;
+    for(int i=1; i<=rd.mx; i++)
+    {
+        for(int m=1; m<=rd.meqn; m++)
+            for(int c=1; c<=rd.ncoeffs; c++)
+              data[count++] = q(i,m,c);
+    }
 
-    fwrite(&data[loc0], esznc*size, 1, fp);
+    fwrite(&data[0], esznc*size, 1, fp);
     fclose(fp);
 }

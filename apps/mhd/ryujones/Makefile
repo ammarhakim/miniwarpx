@@ -11,7 +11,7 @@ LINK_DIR = -L${MINIWARPX}/src
 
 all: xwarpx
 
-xwarpxobjs = qinit.o ../core/flux.o ../core/setprob.o ../core/rp3eu.o
+xwarpxobjs = qinit.o ../core/flux.o ../core/setprob.o ../core/eigensystem.o ../core/rp.o ../core/maxs.o
 
 xwarpx: ${xwarpxobjs}
 	${CXX} -O3 -g ${xwarpxobjs} ${LINK_DIR} -lwarpx -o xwarpx

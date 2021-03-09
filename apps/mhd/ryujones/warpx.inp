@@ -9,7 +9,7 @@ mwave = 7
 mbc = 2
 nout = 5
 verbose = false
-algo = WAVE
+algo = RKDG
 has_source = false
 
 xlower = -1.0
@@ -19,8 +19,8 @@ tstart = 0.0
 tend = 0.4
 dt = 0.1
 
-cfl =  0.95
-cflm = 1.0
+cfl =  0.1
+cflm = 0.11
 
 bc_left  = bc_copy
 bc_right = bc_copy
